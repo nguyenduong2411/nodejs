@@ -10,8 +10,6 @@ router.get('/', async(req, res) => {
     res.render(indexView);
 });
 
-router.get('/list-product', ProductController.getListProduct)
-
 //view product
 router.get('/product', async(req, res) => {
     const indexView = path.join(__dirname, '../views/product.ejs')
@@ -89,5 +87,9 @@ router.get('/admin.insert', async(req, res) => {
     const indexView = path.join(__dirname, '../views/admin.insert.ejs')
     res.render(indexView);
 });
-
+//view product
+router.get('/admin.view', async(req, res) => {
+    const indexView = path.join(__dirname, '../views/admin.view.ejs')
+    res.render(indexView);
+});
 module.exports = router;

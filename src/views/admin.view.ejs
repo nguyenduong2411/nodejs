@@ -18,7 +18,7 @@
         <table class="table table-striped">
             <thead>
                 <tr>
-                    <th>Tên</th>
+                    <th>Name</th>
                     <th>Giới tính</th>
                     <th>Tuổi</th>
                     <th>Điểm Toán</th>
@@ -27,28 +27,8 @@
                 </tr>
             </thead>
             <tbody>
-                <% data.forEach(function(data, index) { %>
-                    <tr>
-                        <td>
-                            <%= data.ten %>
-                        </td>
-                        <td>
-                            <%= data.gioitinh %>
-                        </td>
-                        <td>
-                            <%= data.tuoi %>
-                        </td>
-                        <td>
-                            <%= data.diemtoan %>
-                        </td>
-                        <td>
-                            <%= data.diemly %>
-                        </td>
-                        <td>
-                            <%= data.diemhoa %>
-                        </td>
-                    </tr>
-                    <% }); %>
+                <%console.log(data);%>
+
             </tbody>
         </table>
     </div>
