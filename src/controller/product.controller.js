@@ -4,6 +4,7 @@ class ProductController {
     async getListProduct(req, res) {
             const product = await ProductModel.find();
             //return res.json(product);
+            console.log(product);
             return product;
         }
         // async getProduct(req, res) {

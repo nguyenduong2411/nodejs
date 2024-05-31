@@ -92,4 +92,16 @@ router.get('/admin.view', async(req, res) => {
     const indexView = path.join(__dirname, '../views/admin.view.ejs')
     res.render(indexView);
 });
+
+//view product
+const ProductModel = require('../models/product.model');
+router.get('/admin.view', async(req, res) => {
+    try {
+        const data = await ProductModel.find().exec();
+        res.render('admin.view', { data });
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        res.status(500).send('Internal server error');
+    }
+});
 module.exports = router;
