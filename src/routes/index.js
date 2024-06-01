@@ -28,6 +28,14 @@ router.get('/footer', async(req, res) => {
     const indexView = path.join(__dirname, '../views/footer.ejs')
     res.render(indexView);
 });
+//view product-detail
+router.get('/product-detail', async(req, res) => {
+    const id = req.params._id;
+    const indexView = path.join(__dirname, '../views/product-detail.ejs')
+    const product = await ProductController.getListProduct(id);
+    res.render(indexView, { product });
+});
+
 
 //view cart
 router.get('/cart', async(req, res) => {
@@ -84,18 +92,15 @@ router.post('/login', async(req, res) => {
         }
     })
     //admin
-router.get('/admin.insert', async(req, res) => {
-    const indexView = path.join(__dirname, '../views/admin.insert.ejs')
+router.get('/admin-insert', async(req, res) => {
+    const indexView = path.join(__dirname, '../views/admin/admin-insert.ejs')
     res.render(indexView);
 });
 //admin.view
-// router.get('/admin.view', async(req, res) => {
-//     const indexView = path.join(__dirname, '../views/admin.view.ejs')
-//     res.render(indexView);
-// });
 
-router.get('/admin.view', async(req, res) => {
-    const indexView = path.join(__dirname, '../views/admin.view.ejs')
+
+router.get('/admin-view', async(req, res) => {
+    const indexView = path.join(__dirname, '../views/admin/admin-view.ejs')
     const product = await ProductController.getListProduct();
     res.render(indexView, { product });
 });

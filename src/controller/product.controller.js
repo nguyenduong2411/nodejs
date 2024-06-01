@@ -20,18 +20,19 @@ class ProductController {
         const product = req.body;
         const newProduct = new ProductModel(product);
         await newProduct.save();
-        res.redirect('/admin.insert');
+        res.redirect('/admin-insert');
     }
-    async updateProduct(req, res) {
+    async updateProduct(id) {
         const body = req.body;
-        const updateProduct = await ProductModel.findByIdAndUpdate(req.params._id, body);
-        const product = await ProductModel.findById(req.params._id);
-        return res.json(product);
+        const updateProduct = await ProductModel.findByIdAndUpdate(req.params.id, body).exec();
+        const product = await ProductModel.findById(req.params.id);
+        res.redirect('/admin-update');
     }
     async deleteProduct(req, res) {
-        const productId = req.params.id;
+        const productId = req.params_id;
         const deleteProduct = await ProductModel.findByIdAndDelete(productId);
-        res.redirect("/admin.view");
+        res.redirect("/admin-view");
+        cốnsole.log(id);
     }
 }
 module.exports = new ProductController();
