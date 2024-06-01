@@ -5,10 +5,11 @@ const ProductController = require('../controller/product.controller')
 const UserModel = require('../models/user.model')
 router.use('/api/v1/product', require('./product'));
 
-router.get('/', async(req, res) => {
-    const indexView = path.join(__dirname, '../views/index.ejs')
-    res.render(indexView);
-});
+// router.get('/', async(req, res) => {
+//     const indexView = path.join(__dirname, '../views/index.ejs')
+//     res.render(indexView);
+// });
+// delete product
 
 //view product
 router.get('/product', async(req, res) => {
@@ -87,21 +88,23 @@ router.get('/admin.insert', async(req, res) => {
     const indexView = path.join(__dirname, '../views/admin.insert.ejs')
     res.render(indexView);
 });
-//view product
+//admin.view
+// router.get('/admin.view', async(req, res) => {
+//     const indexView = path.join(__dirname, '../views/admin.view.ejs')
+//     res.render(indexView);
+// });
+
 router.get('/admin.view', async(req, res) => {
     const indexView = path.join(__dirname, '../views/admin.view.ejs')
-    res.render(indexView);
+    const product = await ProductController.getListProduct();
+    res.render(indexView, { product });
 });
 
-//view product
-const ProductModel = require('../models/product.model');
-router.get('/admin.view', async(req, res) => {
-    try {
-        const data = await ProductModel.find().exec();
-        res.render('admin.view', { data });
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        res.status(500).send('Internal server error');
-    }
+router.get('/', async(req, res) => {
+    const indexView = path.join(__dirname, '../views/index.ejs')
+    const product = await ProductController.getListProduct();
+    res.render(indexView, { product });
 });
+
+
 module.exports = router;

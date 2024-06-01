@@ -1,18 +1,18 @@
 const ProductModel = require('../models/product.model');
 
 class ProductController {
-    async getListProduct(req, res) {
-            const product = await ProductModel.find();
-            //return res.json(product);
-            console.log(product);
-            return product;
+    async getListProduct() {
+            const product = await ProductModel.find().exec();
+            return (product);
+            //res.render('admin.view', { product });
         }
         // async getProduct(req, res) {
         //     const product = await ProductModel.findById(req.params._id);
         //     return res.json(product);
         // }
     async getProduct(id) {
-        const product = await ProductModel.findById(id);
+        const product = await ProductModel.findById(id).exec();
+        console.log(id);
         return product;
     }
 
@@ -29,8 +29,9 @@ class ProductController {
         return res.json(product);
     }
     async deleteProduct(req, res) {
-        const product = await ProductModel.findByIdAndDelete(req.params._id);
-        return res.json(product);
+        const productId = req.params.id;
+        const deleteProduct = await ProductModel.findByIdAndDelete(productId);
+        res.redirect("/admin.view");
     }
 }
 module.exports = new ProductController();

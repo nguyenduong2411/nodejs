@@ -12,6 +12,7 @@
     <div class="container" style="padding: 0px 30px; margin-top: 20px">
         <div class="title" style="background-color: #cecece; padding: 10px 30px">
             <h1>Xem dữ liệu</h1>
+            <a href="/admin.insert">Insert Product</a>
             <hr />
         </div>
 
@@ -19,15 +20,45 @@
             <thead>
                 <tr>
                     <th>Name</th>
-                    <th>Giới tính</th>
-                    <th>Tuổi</th>
-                    <th>Điểm Toán</th>
-                    <th>Điểm Lý</th>
-                    <th>Điểm Hóa</th>
+                    <th>Price</th>
+                    <th>OldPrice</th>
+                    <th>Image</th>
+                    <th>Category</th>
+                    <th>Brand</th>
+
                 </tr>
             </thead>
             <tbody>
-                <%console.log(data)%>
+                <% product.forEach((item) => { %>
+                    <tr>
+                        <td>
+                            <%= item.name %>
+                        </td>
+                        <td>
+                            <%= item.price %>
+                        </td>
+                        <td>
+                            <%= item.oldPrice %>
+                        </td>
+                        <td>
+                            <img src="<%= item.thumbnail %>" alt="" style="width: 100px" />
+                        </td>
+                        <td>
+                            <%= item.category %>
+                        </td>
+                        <td>
+                            <%= item.brand %>
+                        </td>
+                        <td>
+                            <a href="api/v1/product/delete-product/<%= item._id %>" class="btn btn-danger">Delete</a>
+                        </td>
+                        <td>
+                            <a href="/api/v1/product/update-product/<%= item._id %>" class="btn btn-warning">Update</a>
+                            <%}) %>
+
+                    </tr>
+
+            </tbody>
         </table>
     </div>
 </body>
